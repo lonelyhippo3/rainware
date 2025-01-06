@@ -1,5 +1,8 @@
-getgenv().key = "andrewelibryandalenlove1322"
-if getgenv().key ~= "andrewelibryandalenlove1322" then return game.Players.LocalPlayer:Kick("get out") end
+--key system dont delete pls
+if getgenv().key ~= "reallysecurekey" then return game.Players.LocalPlayer:Kick() end
+
+
+repeat wait() until game:IsLoaded()
 --a lot of bugs
 
 -- Services
@@ -46,8 +49,128 @@ local r6 = {
     "Left Leg",
     "Right Leg"
 }
+local L_48_ = Vector3.new(0, 0, 0)
 
-repeat wait() until game:IsLoaded()
+local L_5_ = {}
+
+fonts = {
+	UI = 0,
+	System = 1,
+	Plex = 2,
+	Monospace = 3
+}
+
+Skyboxes = {
+	["Purple Nebula"] = {
+		["SkyboxBk"] = "rbxassetid://159454299",
+		["SkyboxDn"] = "rbxassetid://159454296",
+		["SkyboxFt"] = "rbxassetid://159454293",
+		["SkyboxLf"] = "rbxassetid://159454286",
+		["SkyboxRt"] = "rbxassetid://159454300",
+		["SkyboxUp"] = "rbxassetid://159454288"
+	},
+	["Night Sky"] = {
+		["SkyboxBk"] = "rbxassetid://12064107",
+		["SkyboxDn"] = "rbxassetid://12064152",
+		["SkyboxFt"] = "rbxassetid://12064121",
+		["SkyboxLf"] = "rbxassetid://12063984",
+		["SkyboxRt"] = "rbxassetid://12064115",
+		["SkyboxUp"] = "rbxassetid://12064131"
+	},
+	["Pink Daylight"] = {
+		["SkyboxBk"] = "rbxassetid://271042516",
+		["SkyboxDn"] = "rbxassetid://271077243",
+		["SkyboxFt"] = "rbxassetid://271042556",
+		["SkyboxLf"] = "rbxassetid://271042310",
+		["SkyboxRt"] = "rbxassetid://271042467",
+		["SkyboxUp"] = "rbxassetid://271077958"
+	},
+	["Morning Glow"] = {
+		["SkyboxBk"] = "rbxassetid://1417494030",
+		["SkyboxDn"] = "rbxassetid://1417494146",
+		["SkyboxFt"] = "rbxassetid://1417494253",
+		["SkyboxLf"] = "rbxassetid://1417494402",
+		["SkyboxRt"] = "rbxassetid://1417494499",
+		["SkyboxUp"] = "rbxassetid://1417494643"
+	},
+	["Setting Sun"] = {
+		["SkyboxBk"] = "rbxassetid://626460377",
+		["SkyboxDn"] = "rbxassetid://626460216",
+		["SkyboxFt"] = "rbxassetid://626460513",
+		["SkyboxLf"] = "rbxassetid://626473032",
+		["SkyboxRt"] = "rbxassetid://626458639",
+		["SkyboxUp"] = "rbxassetid://626460625"
+	},
+	["Fade Blue"] = {
+		["SkyboxBk"] = "rbxassetid://153695414",
+		["SkyboxDn"] = "rbxassetid://153695352",
+		["SkyboxFt"] = "rbxassetid://153695452",
+		["SkyboxLf"] = "rbxassetid://153695320",
+		["SkyboxRt"] = "rbxassetid://153695383",
+		["SkyboxUp"] = "rbxassetid://153695471"
+	},
+	["Elegant Morning"] = {
+		["SkyboxBk"] = "rbxassetid://153767241",
+		["SkyboxDn"] = "rbxassetid://153767216",
+		["SkyboxFt"] = "rbxassetid://153767266",
+		["SkyboxLf"] = "rbxassetid://153767200",
+		["SkyboxRt"] = "rbxassetid://153767231",
+		["SkyboxUp"] = "rbxassetid://153767288"
+	},
+	["Neptune"] = {
+		["SkyboxBk"] = "rbxassetid://218955819",
+		["SkyboxDn"] = "rbxassetid://218953419",
+		["SkyboxFt"] = "rbxassetid://218954524",
+		["SkyboxLf"] = "rbxassetid://218958493",
+		["SkyboxRt"] = "rbxassetid://218957134",
+		["SkyboxUp"] = "rbxassetid://218950090"
+	},
+	["Redshift"] = {
+		["SkyboxBk"] = "rbxassetid://401664839",
+		["SkyboxDn"] = "rbxassetid://401664862",
+		["SkyboxFt"] = "rbxassetid://401664960",
+		["SkyboxLf"] = "rbxassetid://401664881",
+		["SkyboxRt"] = "rbxassetid://401664901",
+		["SkyboxUp"] = "rbxassetid://401664936"
+	},
+	["Aesthetic Night"] = {
+		["SkyboxBk"] = "rbxassetid://1045964490",
+		["SkyboxDn"] = "rbxassetid://1045964368",
+		["SkyboxFt"] = "rbxassetid://1045964655",
+		["SkyboxLf"] = "rbxassetid://1045964655",
+		["SkyboxRt"] = "rbxassetid://1045964655",
+		["SkyboxUp"] = "rbxassetid://1045962969"
+	}
+}
+local L_60_ = {
+	SmoothPlastic = "",
+	ForceField = "4573037993"
+}
+hitSounds = {
+	Bameware = "rbxassetid://3124331820",
+	Bell = "rbxassetid://6534947240",
+	Bubble = "rbxassetid://6534947588",
+	Pick = "rbxassetid://1347140027",
+	Pop = "rbxassetid://198598793",
+	Rust = "rbxassetid://1255040462",
+	Sans = "rbxassetid://3188795283",
+	Fart = "rbxassetid://130833677",
+	Big = "rbxassetid://5332005053",
+	Vine = "rbxassetid://5332680810",
+	Bruh = "rbxassetid://4578740568",
+	Skeet = "rbxassetid://5633695679",
+	Neverlose = "rbxassetid://6534948092",
+	Fatality = "rbxassetid://6534947869",
+	Bonk = "rbxassetid://5766898159",
+	Minecraft = "rbxassetid://4018616850",
+	Moan = {
+		"rbxassetid://2440888376",
+		"rbxassetid://2440889605",
+		"rbxassetid://2440889869",
+		"rbxassetid://2440889381",
+		"rbxassetid://2440891382"
+	}
+}
 
 local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
 
@@ -73,9 +196,15 @@ local Tabs = {
 local AimbotTabbox = Tabs.Main:AddLeftTabbox()
 local Aimbot = AimbotTabbox:AddTab('Aimbot')
 local AimbotFOVTab = AimbotTabbox:AddTab('FOV Circle')
+local SilentAimTabbox = Tabs.Main:AddRightTabbox()
+local SilentAim = SilentAimTabbox:AddTab('Silent Aim')
+local SFOVTab = SilentAimTabbox:AddTab('FOV Circle')
+local TrigTabbox = Tabs.Main:AddLeftTabbox()
+local Triggerbot = TrigTabbox:AddTab('Triggerbot')
 
 local ESP = Tabs.Visuals:AddLeftGroupbox('ESP')
-local Viewmodel = Tabs.Visuals:AddRightGroupbox('Viewmodel')
+local Viewmodel = Tabs.Visuals:AddRightGroupbox('Local')
+local MiscESP = Tabs.Visuals:AddLeftGroupbox('Misc')
 local FOVCircle = Drawing.new("Circle")
 FOVCircle.Visible = false
 
@@ -107,7 +236,7 @@ local function GetLegitbotTarget()
 	local target,oldval = nil,math.huge
 	
 	for i,v in pairs(Players:GetPlayers()) do
-		if IsAlive(v) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") and v.Character:FindFirstChild("HumanoidRootPart") then
+		if IsAlive(v) and IsAlive(LocalPlayer) and v ~= LocalPlayer and not v.Character:FindFirstChild("ForceField") and v.Character:FindFirstChild("HumanoidRootPart") then
 			if Toggles.AimbotTeamCheck.Value == false or GetTeam(v) ~= GetTeam(LocalPlayer) then
 				if Toggles.AimbotVisCheck.Value == false or IsVisible(v.Character.Head.Position, {v.Character, LocalPlayer.Character, CurrentCamera}) == true then
                     local Vector, onScreen = CurrentCamera:WorldToScreenPoint(v.Character.HumanoidRootPart.Position)
@@ -180,7 +309,7 @@ end
 
 local aimbotEnabled = Aimbot:AddToggle('AimbotEnabled', {
     Text = 'Enabled',
-    Default = false, -- Default value (true / false)
+    Default = false,
     Tooltip = "might be a lil buggy; im working on it :3",
 
     Callback = function(Value)
@@ -197,6 +326,7 @@ local aimbotEnabled = Aimbot:AddToggle('AimbotEnabled', {
                                 --local Vector, onScreen = CurrentCamera:WorldToScreenPoint(hitboxpart.Position)
                                 --local PositionX = (Mouse.X-Vector.X)/Options.AimbotSmoothness.Value + 1
                                 --local PositionY = (Mouse.Y-Vector.Y)/Options.AimbotSmoothness.Value + 1
+
                                 local velocity = hitboxpart.Velocity
                                 CurrentCamera.CFrame = CurrentCamera.CFrame:Lerp(CFrame.new(CurrentCamera.CFrame.Position, (hitboxpart.Position+ (velocity * Options.AimbotPrediction.Value))), Options.AimbotSmoothness.Value)
                             end
@@ -358,10 +488,77 @@ AimbotFOVTab:AddSlider('AimFOVNumSides', {
     end
 })
 
+local saim = SilentAim:AddToggle('SilentAimEnabled', {
+    Text = 'Enabled',
+    Default = false,
+})
+
+SilentAim:AddDropdown('SAIMHitbox', {
+    Values = { 'Head', 'HumanoidRootPart' },
+    Default = 1, 
+    Multi = true,
+
+    Text = 'Hitbox',
+})
+
+SilentAim:AddSlider('SAimbotFOV', {
+    Text = 'Field of View',
+    Default = 90,
+    Min = 0,
+    Max = 360,
+    Suffix = "°",
+    Rounding = 0,
+    Compact = false,
+})
+
+SilentAim:AddSlider('SilentAimHC', {
+    Text = 'Hitchance',
+    Default = 100,
+    Min = 1,
+    Max = 100,
+    Suffix = "%",
+    Rounding = 0,
+    Compact = false,
+})
+
+local saimFOV = SFOVTab:AddToggle('AimbotFOVCircle', {
+    Text = 'Enabled',
+    Default = false,
+})
+
+saimFOV:AddColorPicker('SAimFOVColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'FOV Circle Color',
+    Transparency = 0,
+})
+
+SFOVTab:AddToggle('SAimFOVFilled', {
+    Text = 'Filled',
+    Default = false,
+})
+
+SFOVTab:AddSlider('SAimFOVThickness', {
+    Text = 'Thickness',
+    Default = 1,
+    Min = 1,
+    Max = 30,
+    Rounding = 0,
+    Compact = false,
+})
+
+SFOVTab:AddSlider('SAimFOVNumSides', {
+    Text = 'NumSides',
+    Default = 1,
+    Min = 1,
+    Max = 20,
+    Rounding = 0,
+    Compact = false,
+})
+
 ------------------------------------ VISUALS TAB
 
 local function chamsPlr(v)
-    if IsAlive(v) and v ~= LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") then
+    if IsAlive(v) and v ~= LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") and Toggles.Chams.Value then
         if Toggles.ESPShowTeam.Value == true or GetTeam(v) ~= GetTeam(LocalPlayer) then
             for i2, v2 in next, v.Character:GetChildren() do
                 if v2:IsA("Accoutrement") then
@@ -409,11 +606,111 @@ local function chamsPlr(v)
     end
 end
 
+local L_56_ = {}
+function countESP()
+	local L_1147_ = 0;
+	for L_1148_forvar0, L_1149_forvar1 in next, L_56_ do
+		if L_1149_forvar1.type == "plr" then
+			L_1147_ = L_1147_ + 1
+		end
+	end;
+	return L_1147_
+end;
+local L_76_ = 0;
+function createEsp(L_1150_arg0, L_1151_arg1)
+	local L_1152_ = Drawing.new("Text")
+	local L_1153_ = Drawing.new("Text")
+	local L_1154_ = Drawing.new("Line")
+	local L_1155_ = Drawing.new("Square")
+	local L_1156_ = Drawing.new("Square")
+	local L_1157_ = Drawing.new("Square")
+	local L_1158_ = Drawing.new("Square")
+	local L_1159_ = "Object" .. tostring(L_76_)
+	local L_1160_;
+	if L_1150_arg0 == "plr" then
+		L_1160_ = Instance.new("Folder", L_46_)
+		L_1159_ = L_1151_arg1.Name;
+		L_1160_.Name = L_1159_;
+		L_1157_.Color = Color3.new(0, 0, 0)
+        L_1157_.Filled = true
+		L_1157_.Thickness = 2;
+		L_1157_.Transparency = 1;
+		L_1157_.Visible = false;
+		L_1158_.Color = Color3.new(0, 1, 0)
+        L_1158_.Filled = true
+		L_1158_.Thickness = 1;
+		L_1158_.Transparency = 1;
+		L_1158_.Visible = false
+	else
+		L_76_ = L_76_ + 1
+	end;
+	L_1155_.Color = Color3.new(0, 0, 0)
+	L_1155_.Thickness = 3;
+	L_1155_.Transparency = 1;
+	L_1155_.Filled = false;
+	L_1155_.Visible = false;
+	L_1156_.Color = Color3.new(1, 1, 1)
+	L_1156_.Thickness = 1;
+	L_1156_.Transparency = 1;
+	L_1156_.Filled = false;
+	L_1156_.Visible = false;
+	L_1154_.From = Vector2.new(CurrentCamera.ViewportSize.X / 2, CurrentCamera.ViewportSize.Y * 1)
+	L_1154_.Color = Color3.new(1, 1, 1)
+	L_1154_.Thickness = 1;
+	L_1154_.Transparency = 1;
+	L_1154_.Visible = false;
+	L_1152_.Text = L_1151_arg1.Name;
+	L_1152_.Size = 13;
+	L_1152_.Center = true;
+	L_1152_.OutlineColor = Color3.new(0, 0, 0)
+	L_1152_.Color = Color3.new(1, 1, 1)
+	L_1152_.Visible = false;
+	L_1153_.Text = "Gun"
+	L_1153_.Size = 13;
+	L_1153_.Center = true;
+	L_1153_.OutlineColor = Color3.new(0, 0, 0)
+	L_1153_.Color = Color3.new(1, 1, 1)
+	L_1153_.Visible = false;
+	function invis()
+		L_1156_.Visible = false;
+		L_1154_.Visible = false;
+		L_1152_.Visible = false;
+		L_1158_.Visible = false;
+		L_1155_.Visible = false;
+		L_1157_.Visible = false;
+		L_1153_.Visible = false
+	end;
+	function remove()
+		L_1156_:Remove()
+		L_1153_:Remove()
+		L_1154_:Remove()
+		L_1152_:Remove()
+		L_1158_:Remove()
+		L_1155_:Remove()
+		L_1157_:Remove()
+	end;
+	local L_1161_ = {
+		text = L_1152_,
+		weapon = L_1153_,
+		tracer = L_1154_,
+		box = L_1156_,
+		healthb = L_1158_,
+		--boxoutline = L_1155_,
+		--healthbo = L_1157_,
+		invis = invis,
+		remove = remove,
+		type = L_1150_arg0,
+		object = L_1151_arg1
+	}
+	L_56_[L_1159_] = L_1161_;
+	return L_1161_
+end;
+
 local espEnabled = ESP:AddToggle('ESPEnabled', {
     Text = 'Enabled',
     Default = false, 
 
-    Callback = function(Value) -- big esp loooop
+    Callback = function(Value)
         if Value then
             if Toggles.Chams.Value then
                 for i, v in next, Players:GetPlayers() do
@@ -484,14 +781,64 @@ local chams = ESP:AddToggle('Chams', {
 
 chams:AddColorPicker('OuterChams', {
     Default = Color3.new(0, 1, 0),
-    Title = 'Outer Chams Color', 
+    Title = 'Chams Color', 
     Transparency = 0.5
 })
 
 chams:AddColorPicker('InnerChams', {
     Default = Color3.new(1, 0, 0),
-    Title = 'Inner Chams Color',
+    Title = 'Chams Color',
     Transparency = 0.5
+})
+
+local box = ESP:AddToggle('BoxESP', {
+    Text = 'Box ESP',
+    Default = false,
+})
+box:AddColorPicker('BoxColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Box Color', 
+})
+
+local name = ESP:AddToggle('NameESP', {
+    Text = 'Name ESP',
+    Default = false,
+})
+name:AddColorPicker('NameColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Text Color', 
+})
+
+local wep = ESP:AddToggle('WeaponESP', {
+    Text = 'Weapon ESP',
+    Default = false,
+})
+wep:AddColorPicker('WeaponColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Text Color', 
+})
+
+local bar = ESP:AddToggle('HealthBar', {
+    Text = 'Health Bar',
+    Default = false,
+})
+bar:AddColorPicker('BarColor', {
+    Default = Color3.new(0,1,0),
+    Title = 'Bar Color', 
+})
+
+local trace = ESP:AddToggle('Tracers', {
+    Text = 'Tracers',
+    Default = false,
+})
+trace:AddColorPicker('TracerColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Tracer Color', 
+})
+
+ESP:AddToggle('Outline', {
+    Text = 'Outline',
+    Default = false,
 })
 
 ESP:AddToggle('ESPShowTeam', {
@@ -499,108 +846,263 @@ ESP:AddToggle('ESPShowTeam', {
     Default = false,
 })
 
-local vmEnabled = Viewmodel:AddToggle('VMEnabled', {
-    Text = 'Enabled',
-    Default = false, 
+ESP:AddDropdown('Font', {
+    Values = { 'UI', 'System', 'Plex', 'Monospace' },
+    Default = 1, 
+    Multi = false,
+
+    Text = 'Font',
 })
+
+ESP:AddDropdown('TextMode', {
+    Values = { 'Normal', 'Upper', 'Lower' },
+    Default = 1, 
+    Multi = false,
+
+    Text = 'Text Mode',
+})
+
+function hasProperty(L_230_arg0, L_231_arg1)
+    return pcall(function()
+        _ = L_230_arg0[L_231_arg1]
+    end)
+end;
+
+function selfChams()
+	if Toggles.SelfChams.Value and LocalPlayer.Character then
+		for L_1380_forvar0, L_1381_forvar1 in next, LocalPlayer.Character:GetDescendants() do
+			local L_1382_ = Options.SfChamsMaterial.Value
+			if L_1381_forvar1.Name == "HumanoidRootPart" or L_1381_forvar1.Name == "Head" or L_1381_forvar1.Name == "CamRoot"then
+				continue;
+			end;
+			if (L_1381_forvar1:IsA"Accoutrement") and Toggles.RemoveHats.Value then
+				L_1381_forvar1:Destroy()
+			end;
+			if L_1381_forvar1:IsA"BasePart" and L_1381_forvar1.Name ~= "CamRoot" and L_1381_forvar1.Name ~= "WeaponRoot" then
+				L_1381_forvar1.Color = Options.SfChamsColor.Value
+				L_1381_forvar1.Transparency = Options.SfChamsColor.Transparency;
+				L_1381_forvar1.Material = L_1382_
+			end;
+			if L_1381_forvar1:IsA"SpecialMesh" then
+				local L_1383_ = Options.SfChamsColor.Value
+				L_1381_forvar1.VertexColor = Vector3.new(L_1383_.R, L_1383_.G, L_1383_.B)
+			end;
+			if L_1381_forvar1.Name == "Shirt" then
+				L_1381_forvar1.ShirtTemplate = "rbxassetid://0"
+			elseif L_1381_forvar1.Name == "Pants" then
+				L_1381_forvar1.PantsTemplate = "rbxassetid://0"
+			elseif L_1381_forvar1.Name == "Face" then
+				L_1381_forvar1.Texture = "rbxassetid://0"
+			end;
+			if hasProperty(L_1381_forvar1, "TextureID") then
+				L_1381_forvar1.TextureID = L_60_[L_1382_]
+			end;
+			if hasProperty(L_1381_forvar1, "TextureId") then
+				L_1381_forvar1.TextureId = L_60_[L_1382_]
+			end
+		end
+	end
+end;
+
+function updateViewModelVisuals()
+	local L_989_;
+    local L_989_2;
+	if workspace.ViewModel:FindFirstChild("Left Arm") and workspace.ViewModel:FindFirstChild("Right Arm") then
+		L_989_ = workspace.ViewModel["Left Arm"]
+        L_989_2 = workspace.ViewModel["Right Arm"]
+	end;
+	if L_989_ and L_989_.Name == "Left Arm" and L_989_2 and L_989_2.Name == "Right Arm" and workspace.ViewModel:FindFirstChildOfClass("Model") then
+		for L_990_forvar0, L_991_forvar1 in next, workspace.ViewModel:FindFirstChildOfClass("Model"):GetDescendants() do
+            if Toggles.HideVM.Value then
+                if L_991_forvar1:IsA"BasePart" and L_991_forvar1.Name ~= "WeaponRoot" then
+                    L_989_.Transparency = 1
+                    L_989_2.Transparency = 1
+                    L_991_forvar1.Transparency = 1
+                end
+            else
+                if L_991_forvar1:IsA"BasePart" and L_991_forvar1.Name ~= "WeaponRoot" then
+                    L_989_.Transparency = Options.ArmChamsColor.Transparency
+                    L_989_2.Transparency = Options.ArmChamsColor.Transparency
+                    L_991_forvar1.Transparency = Options.WepChamsColor.Transparency
+                end
+            end
+			if Toggles.WeaponChams.Value then
+				if L_991_forvar1:IsA"BasePart" and L_991_forvar1.Name ~= "WeaponRoot" then
+					L_991_forvar1.Color = Options.WepChamsColor.Value
+					L_991_forvar1.Transparency = Options.WepChamsColor.Transparency
+					L_991_forvar1.Material = Options.WepMaterial.Value
+					if hasProperty(L_991_forvar1, "TextureID") then
+						L_991_forvar1.TextureID = ""
+					end;
+					if hasProperty(L_991_forvar1, "Reflectance") then
+						L_991_forvar1.Reflectance = Options.WeaponReflectance.Value
+					end;
+					if L_991_forvar1:FindFirstChild("SurfaceAppearance") then
+						L_991_forvar1.SurfaceAppearance:Destroy()
+					end
+				end;
+			end
+		end
+        if Toggles.ArmChams.Value then
+            if hasProperty(L_989_, "CastShadow") then
+                L_989_.CastShadow = false
+            end;
+            if hasProperty(L_989_2, "CastShadow") then
+                L_989_2.CastShadow = false
+            end;
+            local L_997_ = Options.ArmMaterial.Value
+            if L_989_:IsA"SpecialMesh" then
+                if L_997_ == "ForceField" then
+                    L_989_.TextureId = L_60_[L_997_]
+                else
+                    L_989_.TextureId = ""
+                end;
+                local L_998_ = Options.ArmChamsColor.Value
+                L_989_.VertexColor = Vector3.new(L_998_.R, L_998_.G, L_998_.B)
+            end;
+            if L_989_:IsA"Part" then
+                L_989_.Material = L_997_;
+                L_989_.Color = Options.ArmChamsColor.Value
+                L_989_.Transparency = Options.ArmChamsColor.Transparency
+            end
+            local L_997_ = Options.ArmMaterial.Value
+            if L_989_2:IsA"SpecialMesh" then
+                if L_997_ == "ForceField" then
+                    L_989_2.TextureId = L_60_[L_997_]
+                else
+                    L_989_2.TextureId = ""
+                end;
+                local L_998_ = Options.ArmChamsColor.Value
+                L_989_2.VertexColor = Vector3.new(L_998_.R, L_998_.G, L_998_.B)
+            end;
+            if L_989_2:IsA"Part" then
+                L_989_2.Material = L_997_;
+                L_989_2.Color = Options.ArmChamsColor.Value
+                L_989_2.Transparency = Options.ArmChamsColor.Transparency
+            end
+        end
+	end
+end;
 
 Viewmodel:AddToggle('HideVM', {
     Text = 'Hide Viewmodel',
     Default = false,
-
-    Callback = function(Value)
-        if Value and Toggles.VMEnabled.Value then --- set charadded connction later
-            for i, v in workspace.ViewModel:GetDescendants() do
-                if v:IsA("BasePart") then
-                    v.Transparency = 1
-                end
-            end
-        else
-            for i, v in workspace.ViewModel:GetDescendants() do
-                if v:IsA("BasePart") and v.Name ~= "WeaponRoot" and v.Name ~= "CamRoot" then
-                    v.Transparency = 0
-                end
-            end
-        end
-    end
+    Callback = updateViewModelVisuals,
 })
 
-Viewmodel:AddLabel("Arm Color"):AddColorPicker('ArmColor', {
-    Default = Color3.new(1, 0, 0),
-    Title = 'Arm Color',
+Viewmodel:AddToggle('RemoveHats', {
+    Text = 'Remove Hats',
+    Default = false,
+    Callback = selfChams,
+})
+
+local sfchams = Viewmodel:AddToggle('SelfChams', {
+    Text = 'Self Chams',
+    Default = false,
+    Callback = selfChams,
+})
+sfchams:AddColorPicker('SfChamsColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Chams Color', 
     Transparency = 0,
+    Callback = selfChams,
+})
+Viewmodel:AddDropdown('SfChamsMaterial', {
+    Values = { 'ForceField', 'SmoothPlastic' },
+    Default = 1, 
+    Multi = false,
 
-    Callback = function(Value)
-        if Toggles.VMEnabled.Value then --- set charadded connction later
-            for i, v in workspace.ViewModel:GetChildren() do
-                if v.Name == "Left Arm" or v.Name == "Right Arm" then
-                    v.Color = Options.ArmColor.Value
-                    v.Transparency = Options.ArmColor.Transparency
-                end
-            end
-        end
-    end
+    Text = "Self Chams Material",
+
+    Callback = selfChams,
 })
 
+local wepchams = Viewmodel:AddToggle('WeaponChams', {
+    Text = 'Weapon Chams',
+    Default = false,
+    Callback = updateViewModelVisuals,
+})
+wepchams:AddColorPicker('WepChamsColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Chams Color', 
+    Transparency = 0,
+    Callback = updateViewModelVisuals,
+})
+Viewmodel:AddDropdown('WepMaterial', {
+    Values = { 'ForceField', 'SmoothPlastic' },
+    Default = 1, 
+    Multi = false,
+
+    Text = "Weapon Chams Material",
+    Callback = updateViewModelVisuals,
+})
+
+local armchams = Viewmodel:AddToggle('ArmChams', {
+    Text = 'Arm Chams',
+    Default = false,
+    Callback = updateViewModelVisuals,
+})
+armchams:AddColorPicker('ArmChamsColor', {
+    Default = Color3.new(1,1,1),
+    Title = 'Chams Color', 
+    Transparency = 0,
+    Callback = updateViewModelVisuals,
+})
 Viewmodel:AddDropdown('ArmMaterial', {
-    Values = { 'Neon', 'SmoothPlastic', 'Glass', 'Wood', 'Foil' },
-    Default = 1,
+    Values = { 'ForceField', 'SmoothPlastic' },
+    Default = 1, 
     Multi = false,
 
-    Text = 'Arm Material',
+    Text = "Arm Chams Material",
+    Callback = updateViewModelVisuals,
+})
+
+Viewmodel:AddSlider('WeaponReflectance', {
+    Text = 'Weapon Reflectance',
+    Default = 0,
+    Min = 0,
+    Max = 1,
+    Rounding = 2,
+    Compact = false,
+    Callback = updateViewModelVisuals,
+})
+
+local thirdp = MiscESP:AddToggle('ThirdPerson', {
+    Text = 'Third Person',
+    Default = false,
 
     Callback = function(Value)
-        if Toggles.VMEnabled.Value then --- set charadded connction later
-            for i, v in workspace.ViewModel:GetChildren() do
-                if v.Name == "Left Arm" or v.Name == "Right Arm" then
-                    v.Material = Value
-                end
-            end
+        if Value then
+            LocalPlayer.CameraMode = "Classic"
+            RunService:BindToRenderStep("thirdperson", 1, function()
+				LocalPlayer.CameraMaxZoomDistance = Options.TPDistance.Value
+				LocalPlayer.CameraMinZoomDistance = Options.TPDistance.Value
+			end)
+        else
+			RunService:UnbindFromRenderStep("thirdperson")
+            LocalPlayer.CameraMode = "LockFirstPerson"
         end
     end
 })
 
-Viewmodel:AddLabel("Gun Color"):AddColorPicker('GunColor', {
-    Default = Color3.new(1, 0, 0), -- Bright green
-    Title = 'Gun Color', -- Optional. Allows you to have a custom color picker title (when you open it)
-    Transparency = 0,
+thirdp:AddKeyPicker('TPEnabledKP', {
 
-    Callback = function(Value)
-        if Toggles.VMEnabled.Value then --- set charadded connction later
-            for i, v in workspace.ViewModel:GetChildren() do
-                if v:IsA("Model") then
-                    for k, t in v:GetDescendants() do
-                        if t:IsA("BasePart") and t.Name ~= "WeaponRoot" then
-                            t.Color = Options.GunColor.Value
-                            t.Transparency = Options.GunColor.Transparency
-                        end
-                    end
-                end
-            end
-        end
-    end
+    Default = 'X',
+    SyncToggleState = true,
+
+
+    Mode = 'Toggle',
+    Text = 'Third Person',
+    NoUI = false,
 })
 
-Viewmodel:AddDropdown('GunMaterial', {
-    Values = { 'Neon', 'SmoothPlastic', 'Glass', 'Wood', 'Foil' },
-    Default = 1,
-    Multi = false,
-
-    Text = 'Gun Material',
-
-    Callback = function(Value)
-        if Toggles.VMEnabled.Value then --- set charadded connction later
-            for i, v in workspace.ViewModel:GetChildren() do
-                if v:IsA("Model") then
-                    for k, t in v:GetDescendants() do
-                        if t:IsA("BasePart") and t.Name ~= "WeaponRoot" then
-                            t.Material = Value
-                        end
-                    end
-                end
-            end
-        end
-    end
+MiscESP:AddSlider('TPDistance', {
+    Text = 'Third Person Distance',
+    Default = 10,
+    Min = 5,
+    Max = 15,
+    Rounding = 1,
+    Compact = false,
 })
 
 for i, v in next, Players:GetPlayers() do
@@ -641,6 +1143,167 @@ for i, v in next, Teams:GetChildren() do
         end
     end)
 end;
+
+workspace.ViewModel.ChildAdded:Connect(function()
+    task.wait(0.1)
+    selfChams()
+    updateViewModelVisuals()
+end)
+
+L_5_.round = function(L_713_arg0, L_714_arg1)
+    L_714_arg1 = L_714_arg1 or 1;
+    local L_715_;
+    if typeof(L_713_arg0) == "Vector2" then
+        L_715_ = Vector2.new(L_5_.round(L_713_arg0.X), L_5_.round(L_713_arg0.Y))
+    elseif typeof(L_713_arg0) == "Color3" then
+        return L_5_.round(L_713_arg0.r * 255), L_5_.round(L_713_arg0.g * 255), L_5_.round(L_713_arg0.b * 255)
+    else
+        L_715_ = math.floor(L_713_arg0 / L_714_arg1 + math.sign(L_713_arg0) * 0.5) * L_714_arg1;
+        if L_715_ < 0 then
+            L_715_ = L_715_ + L_714_arg1
+        end;
+        return L_715_
+    end;
+    return L_715_
+end;
+
+-- fix teamcheck and some visual bugs with esp
+invissed = false
+RunService.RenderStepped:Connect(function(L_1691_arg0)
+	if #Players:GetPlayers() ~= countESP() then
+		for L_1692_forvar0, L_1693_forvar1 in next, Players:GetPlayers() do
+			if not L_56_[L_1693_forvar1.Name] and L_1693_forvar1.Name ~= LocalPlayer.Name then
+				createEsp("plr", L_1693_forvar1)
+			end
+		end
+	end;
+
+	if Toggles.ESPEnabled.Value then
+		invissed = false;
+		for L_1694_forvar0, L_1695_forvar1 in next, L_56_ do
+			local L_1696_ = L_1695_forvar1.type == "plr"
+			if L_1696_ and not Players:FindFirstChild(L_1694_forvar0) or not L_1696_ and L_1695_forvar1.object == nil then
+				L_1695_forvar1.invis()
+				L_1695_forvar1.remove()
+				L_56_[L_1694_forvar0] = nil;
+				continue;
+			end;
+			if L_1696_ and (Toggles.ESPShowTeam.Value == true or GetTeam(Players[L_1694_forvar0]) ~= GetTeam(LocalPlayer)) and Players[L_1694_forvar0].Character and Players[L_1694_forvar0].Character:FindFirstChild("Humanoid") and Players[L_1694_forvar0].Character:FindFirstChild("HumanoidRootPart") and IsAlive(Players[L_1694_forvar0]) and LocalPlayer.Character:FindFirstChild("Head") and Players[L_1694_forvar0].Character:FindFirstChild("Head") or not L_1696_ and L_1695_forvar1.object then
+                if not IsAlive(LocalPlayer) or L_1696_ and math.abs(Players[L_1694_forvar0].Character.Head.Position.Y - LocalPlayer.Character.Head.Position.Y) >= 30 then
+                    L_1695_forvar1.invis()
+                    continue;
+                end;
+				local L_1697_;
+				local L_1698_ = L_48_;
+				local L_1699_ = L_48_;
+				if L_1696_ then
+					L_1697_ = Players[L_1694_forvar0]
+					local L_1712_ = L_1697_.Character.HumanoidRootPart.Position;
+					L_1698_ = Vector3.new(L_1712_.x, L_1712_.y + 2.45, L_1712_.z)
+					L_1699_ = Vector3.new(L_1712_.x, L_1712_.y - 3.1, L_1712_.z)
+				elseif L_1695_forvar1.type == "weapon" and L_1695_forvar1.object and L_1695_forvar1.object then
+					L_1698_ = L_1695_forvar1.object.Position;
+					L_1699_ = L_1695_forvar1.object.Position
+				end;
+				local L_1701_, L_1702_ = CurrentCamera:WorldToViewportPoint(L_1698_)
+				local L_1703_, L_1704_ = CurrentCamera:WorldToViewportPoint(L_1699_)
+				if not L_1702_ or not L_1704_ then
+					L_1695_forvar1.invis()
+					continue;
+				end;
+				local L_1705_ = (L_1703_.y - L_1701_.y) / 2;
+				local L_1706_ = true;
+				--[[if library_flags["Visible Only ESP"] and LocalPlayer.Character or not L_1696_ and L_1695_forvar1.object then
+					L_1706_ = false;
+					local L_1713_ = L_1696_ and L_1697_.Character.Head.Position or L_1695_forvar1.object.Position;
+					local L_1714_ = Ray.new(L_34_.CFrame.p, (L_1713_ - L_34_.CFrame.p).unit * 500)
+					local L_1715_, L_1716_ = workspace:FindPartOnRayWithIgnoreList(L_1714_, {
+						CurrentCamera,
+						LocalPlayer.Character,
+					})
+					if L_1696_ and L_1697_.Character then
+						L_1706_ = L_1715_:IsDescendantOf(L_1697_.Character)
+					elseif L_1715_ then
+						L_1706_ = L_1715_ == L_1695_forvar1.object
+					end
+				end;]]
+				if IsAlive(LocalPlayer) and L_1697_ then
+					if math.abs(L_1697_.Character.HumanoidRootPart.Position.Y - LocalPlayer.Character.HumanoidRootPart.Position.Y) > 45 then
+						L_1706_ = false
+					end
+				end;
+				if not L_1706_ then
+					L_1695_forvar1.invis()
+					continue;
+				end;
+				local L_1707_ = Options.Font.Value
+				local L_1708_ = ""
+				if L_1696_ then
+					if L_1697_.Character:FindFirstChild("Equipped") then
+						L_1708_ = tostring(L_1697_.Character:FindFirstChild("Equipped").Value)
+					end;
+					local L_1717_ = Toggles.BoxESP.Value
+					local L_1718_ = Toggles.HealthBar.Value
+					L_1695_forvar1.text.Visible = Toggles.NameESP.Value
+					L_1695_forvar1.weapon.Text = L_1708_;
+					L_1695_forvar1.weapon.Visible = Toggles.WeaponESP.Value
+					L_1695_forvar1.tracer.Visible = Toggles.Tracers.Value
+					--L_1695_forvar1.boxoutline.Visible = L_1717_ and Toggles.Outline.Value and true or false;
+					L_1695_forvar1.box.Visible = L_1717_;
+					L_1695_forvar1.healthb.Visible = L_1718_;
+					--L_1695_forvar1.healthbo.Visible = L_1718_;
+					L_1695_forvar1.tracer.To = L_5_.round(Vector2.new(L_1703_.X, L_1703_.Y))
+					if L_1718_ then
+						L_1695_forvar1.healthb.Position = L_5_.round(Vector2.new(L_1701_.X - L_1705_ / 2 - 4, L_1703_.Y - 1))
+						L_1695_forvar1.healthb.Size = L_5_.round(Vector2.new(2, -L_1697_.Character.Humanoid.Health / math.clamp(L_1697_.Character.Humanoid.MaxHealth, 0, 100) * (L_1703_.Y - L_1701_.Y) + 2))
+						--L_1695_forvar1.healthbo.Position = L_5_.round(Vector2.new((L_1701_.X - L_1705_ / 2) - 4, L_1703_.Y - 1))
+						--L_1695_forvar1.healthbo.Size = L_5_.round(Vector2.new(2, -(L_1703_.Y - L_1701_.Y) + 2))
+					end;
+					if L_1717_ then
+						--L_1695_forvar1.boxoutline.Size = L_5_.round(Vector2.new(L_1705_, L_1703_.y - L_1701_.Y))
+						--L_1695_forvar1.boxoutline.Position = L_5_.round(Vector2.new(L_1701_.X - L_1705_ / 2, L_1701_.Y))
+						L_1695_forvar1.box.Position = L_5_.round(Vector2.new(L_1701_.X - L_1705_ / 2, L_1701_.Y))
+						L_1695_forvar1.box.Size = L_5_.round(Vector2.new(L_1705_, L_1703_.y - L_1701_.Y))
+					end;
+					L_1695_forvar1.box.Color = Options.BoxColor.Value
+					L_1695_forvar1.text.Color = Options.NameColor.Value
+					L_1695_forvar1.weapon.Color = Options.WeaponColor.Value
+					L_1695_forvar1.tracer.Color = Options.TracerColor.Value
+                    L_1695_forvar1.healthb.Color = Options.BarColor.Value
+				end;
+				local L_1709_ = L_1696_ and L_1694_forvar0 or L_1695_forvar1.object.Name;
+				local L_1710_ = Toggles.Outline.Value
+				L_1695_forvar1.text.Position = Vector2.new(L_1701_.X, L_1701_.Y - 15)
+				L_1695_forvar1.text.Font = fonts[L_1707_]
+				L_1695_forvar1.text.Outline = L_1710_;
+				L_1695_forvar1.weapon.Position = L_5_.round(Vector2.new(L_1701_.X, L_1703_.Y + 3))
+				L_1695_forvar1.weapon.Outline = L_1710_;
+				L_1695_forvar1.weapon.Font = fonts[L_1707_]
+				local L_1711_ = Options.TextMode.Value
+				if L_1711_ == "Upper" then
+					L_1695_forvar1.text.Text = string.upper(L_1709_)
+					L_1695_forvar1.weapon.Text = string.upper(L_1708_)
+				end;
+				if L_1711_ == "Lower" then
+					L_1695_forvar1.text.Text = string.lower(L_1709_)
+					L_1695_forvar1.weapon.Text = string.lower(L_1708_)
+				end;
+				if L_1711_ == "Normal" then
+					L_1695_forvar1.text.Text = L_1709_
+				end
+			else
+				L_1695_forvar1.invis()
+			end
+		end
+	else
+		if not invissed then
+			invissed = true;
+			for L_1719_forvar0, L_1720_forvar1 in next, L_56_ do
+				L_1720_forvar1.invis()
+			end
+		end
+	end;
+end)
 
 Library:SetWatermarkVisibility(true)
 
