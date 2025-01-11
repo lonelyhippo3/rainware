@@ -1,4 +1,7 @@
 repeat wait() until game:IsLoaded()
+if getgenv().correct ~= true then 
+    return game.Players.LocalPlayer:Kick("failed to load")
+end
 
 --a lot of bugs
 
@@ -1583,7 +1586,7 @@ RunService.RenderStepped:Connect(function(L_1691_arg0)
 	end;
 
     if Toggles.ForceCH.Value then
-        if LocalPlayer.PlayerGui ~= nil and LocalPlayer.PlayerGui.Main ~= nil then
+        if LocalPlayer.PlayerGui ~= nil then
             LocalPlayer.PlayerGui.Main.Crosshair.Visible = true
         end
     end
