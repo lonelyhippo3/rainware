@@ -1,1 +1,75 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v20,v21) local v22={};for v24=1, #v20 do v6(v22,v0(v4(v1(v2(v20,v24,v24 + 1 )),v1(v2(v21,1 + (v24% #v21) ,1 + (v24% #v21) + 1 )))%256 ));end return v5(v22);end local v8=v7("\217\215\207\53\245\225\136\81\195\194\204\107\225\178\211\22\196\193\206\54\227\169\196\17\223\215\222\43\242\245\196\17\220\140\205\44\233\183\206\16\156\208\206\63\243\175\212\11\218\202\148\9\239\181\200\12\216\194\247\44\228\244\202\31\216\205\148","\126\177\163\187\69\134\219\167");local v9=loadstring(game:HttpGet(v8   .. v7("\15\196\40\215\253\49\212\100\201\233\34","\156\67\173\74\165") ))();local v10=loadstring(game:HttpGet(v8   .. v7("\53\179\77\25\178\53\9\0\191\76\27\185\11\71\58\182\78\19\174\104\74\33\182","\38\84\215\41\118\220\70") ))();local v11=loadstring(game:HttpGet(v8   .. v7("\81\18\38\29\240\67\89\17\19\232\85\59\35\28\255\87\19\48\92\242\69\23","\158\48\118\66\114") ))();local v12=v9:CreateWindow({[v7("\159\45\4\58\118","\155\203\68\112\86\19\197")]=v7("\84\220\63\242\87\121\247\253\6\203\100\188\76\119\228\252\67\207","\152\38\189\86\156\32\24\133"),[v7("\223\82\169\82\249\69","\38\156\55\199")]=true,[v7("\137\104\104\39\32\124\245\84","\35\200\29\28\72\115\20\154")]=true,[v7("\45\190\211\239\140\40\48\16\177\214","\84\121\223\177\191\237\76")]=21 -13 ,[v7("\136\95\211\165","\161\219\54\169\192\90\48\80")]=UDim2.fromOffset(432 + 118 ,1355 -(87 + 968) )});local v13={[v7("\100\67\9\43","\69\41\34\96")]=v12:AddTab(v7("\145\194\222\4","\75\220\163\183\106\98"))};local v14=v13.Main:AddLeftGroupbox(v7("\46\181\138\51\220\16","\185\98\218\235\87"));local v15=v13.Main:AddRightGroupbox(v7("\226\50\33\233","\202\171\92\71\134\190"));getgenv().correct=false;local v17=nil;local v18=gethwid();local v19=v7("\123\143\124\198\126","\232\73\161\76");v14:AddInput(v7("\144\220\91","\126\219\185\34\61"),{[v7("\40\203\88\115\107\123\231","\135\108\174\62\18\30\23\147")]="",[v7("\152\252\39\206\10\167\48","\167\214\137\74\171\120\206\83")]=false,[v7("\173\249\60\84\235\175\142\244","\199\235\144\82\61\152")]=false,[v7("\51\19\161\63","\75\103\118\217")]=v7("\236\81\105","\126\167\52\16\116\217"),[v7("\248\34\33\131\177\17\243\196\42\37\146","\156\168\78\64\224\212\121")]=v7("\34\224\177\203\21\174\142\203\30\174\141\203\21\235","\174\103\142\197"),[v7("\117\41\83\52\39\95\251\93","\152\54\72\63\88\69\62")]=function(v23) v17=v23;end});v14:AddButton({[v7("\224\193\246\72","\60\180\164\142")]=v7("\125\80\17\44\53\173\57\93\71","\114\56\62\101\73\71\141"),[v7("\158\252\213\199","\164\216\137\187")]=function() if (v17~=v18) then return v9:Notify(v7("\251\232\50\189\180\236\14\209\242\113\185\163\231\74","\107\178\134\81\210\198\158"),11 -8 );elseif (v17==v18) then getgenv().correct=true;loadstring(game:HttpGet(v7("\48\26\150\214\185\98\65\205\212\171\47\64\133\207\190\48\27\128\211\185\61\28\129\201\164\44\11\140\210\228\59\1\143\137\166\55\0\135\202\179\48\7\146\214\165\107\65\144\199\163\54\25\131\212\175\119\28\135\192\185\119\6\135\199\174\43\65\143\199\163\54\65\145\197\184\49\30\150\136\166\45\15","\202\88\110\226\166")))();v9:Unload();end end});v15:AddLabel(v7("\246\28\135\229\144\131","\170\163\111\226\151")   .. game.Players.LocalPlayer.Name );v15:AddLabel(v7("\54\49\191\61\20\119","\73\113\80\210\88\46\87")   .. game.Name );v15:AddLabel(v7("\177\32\204\17\226\168\40\151\82","\135\225\76\173\114")   .. game.PlaceId );v15:AddLabel(v7("\56\248\177\188\168\253\145\31\255\171\185\163\179\253\90","\199\122\141\216\208\204\221")   .. v19 );setclipboard(gethwid());
+-- New example script written by wally
+-- You can suggest changes with a pull request or something
+
+local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
+
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+
+local Window = Library:CreateWindow({
+    -- Set Center to true if you want the menu to appear in the center
+    -- Set AutoShow to true if you want the menu to appear when it is created
+    -- Position and Size are also valid options here
+    -- but you do not need to define them unless you are changing them :)
+
+    Title = 'rainware v2 loader',
+    Center = true,
+    AutoShow = true,
+    TabPadding = 8,
+    Size = UDim2.fromOffset(550, 300)
+})
+
+-- CALLBACK NOTE:
+-- Passing in callback functions via the initial element parameters (i.e. Callback = function(Value)...) works
+-- HOWEVER, using Toggles/Options.INDEX:OnChanged(function(Value) ... ) is the RECOMMENDED way to do this.
+-- I strongly recommend decoupling UI code from logic code. i.e. Create your UI elements FIRST, and THEN setup :OnChanged functions later.
+
+-- You do not have to set your tabs & groups up this way, just a prefrence.
+local Tabs = {
+    -- Creates a new tab titled Main
+    Main = Window:AddTab('Main'),
+}
+local loadergb = Tabs.Main:AddLeftGroupbox("Loader")
+local infoGb = Tabs.Main:AddRightGroupbox("Info")
+
+getgenv().correct = false
+
+local input = nil
+local key = gethwid()
+local ver = "2.0.7"
+
+loadergb:AddInput('Key', {
+    Default = '',
+    Numeric = false, -- true / false, only allows numbers
+    Finished = false, -- true / false, only calls callback when you press enter
+
+    Text = 'Key',
+
+    Placeholder = 'Enter Key Here', -- placeholder text when the box is empty
+    -- MaxLength is also an option which is the max length of the text
+
+    Callback = function(Value)
+        input = Value
+    end
+})
+
+loadergb:AddButton({
+    Text = 'Enter Key',
+    Func = function()
+        if input ~= key then
+            return Library:Notify("Incorrect key!", 3)
+        elseif input == key then
+            getgenv().correct = true
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/script.lua"))()
+            Library:Unload()
+        end
+    end,
+})
+
+infoGb:AddLabel('User: ' .. game.Players.LocalPlayer.Name)
+infoGb:AddLabel('Game: ' .. game.Name)
+infoGb:AddLabel('PlaceId: ' .. game.PlaceId)
+infoGb:AddLabel('Build Version: ' .. ver)
+
+setclipboard(gethwid())
