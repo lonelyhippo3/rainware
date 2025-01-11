@@ -1,8 +1,5 @@
---key system dont delete pls
-if getgenv().key ~= "reallysecurekey" then return game.Players.LocalPlayer:Kick() end
-
-
 repeat wait() until game:IsLoaded()
+
 --a lot of bugs
 
 -- Services
@@ -22,6 +19,8 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = workspace.CurrentCamera
 local currentMS = tick()
+
+getgenv().holdE = false;
 
 local r15 = {
 	"Head",
@@ -172,24 +171,41 @@ hitSounds = {
 	}
 }
 
-local repo = 'https://raw.githubusercontent.com/violin-suzutsuki/LinoriaLib/main/'
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
 
 local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
 local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
 local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
+local Options = Library.Options
+local Toggles = Library.Toggles
+
+Library.ShowToggleFrameInKeybinds = false -- Make toggle keybinds work inside the keybinds UI (aka adds a toggle to the UI). Good for mobile users (Default value = true)
+-- Toggles the Linoria cursor globaly (Default value = true)
+-- Changes the side of the notifications globaly (Left, Right) (Default value = Left)
 
 local Window = Library:CreateWindow({
+	-- Set Center to true if you want the menu to appear in the center
+	-- Set AutoShow to true if you want the menu to appear when it is created
+	-- Set Resizable to true if you want to have in-game resizable Window
+	-- Set ShowCustomCursor to false if you don't want to use the Linoria cursor
+	-- NotifySide = Changes the side of the notifications (Left, Right) (Default value = Left)
+	-- Position and Size are also valid options here
+	-- but you do not need to define them unless you are changing them :)
 
-    Title = 'rainware v2 | Unnamed Shooter' ,
+	Title = 'rainware v2 | Unnamed Shooter' ,
     Center = true,
     AutoShow = true,
     TabPadding = 8,
+    ShowCustomCursor = true,
+    NotifySide = "Left",
     MenuFadeTime = 0
 })
 
 local Tabs = {
     Main = Window:AddTab('Legit'),
+    Rage = Window:AddTab('Rage'),
     Visuals = Window:AddTab('Visuals'),
+    Misc = Window:AddTab('Misc'),
     ['UI Settings'] = Window:AddTab('UI Settings'),
 }
 
@@ -208,6 +224,10 @@ local MiscESP = Tabs.Visuals:AddLeftGroupbox('Misc')
 local FOVCircle = Drawing.new("Circle")
 FOVCircle.Visible = false
 
+local AntiAim = Tabs.Rage:AddLeftGroupbox("Anti-Aim")
+
+local Movement = Tabs.Misc:AddLeftGroupbox('Movement')
+
 local function IsAlive(plr)
 	if plr and plr.Character and plr.Character.FindFirstChild(plr.Character, "Humanoid") and plr.Character.Humanoid.Health > 0 then
 		return true
@@ -217,7 +237,9 @@ local function IsAlive(plr)
 end
 
 local function IsVisible(pos, ignoreList)
-	return #CurrentCamera:GetPartsObscuringTarget({LocalPlayer.Character.Head.Position, pos}, ignoreList) == 0 and true or false
+    if LocalPlayer.Character.Head then
+	    return #CurrentCamera:GetPartsObscuringTarget({LocalPlayer.Character.Head.Position, pos}, ignoreList) == 0 and true or false
+    end
 end
 
 local function GetTeam(plr)
@@ -555,9 +577,83 @@ SFOVTab:AddSlider('SAimFOVNumSides', {
     Compact = false,
 })
 
+------------------------------------ RAGE TAB
+
+function updatePitch()
+    LocalPlayer.Character.PrimaryPart.CFrame = CFrame.new(LocalPlayer.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(0), 0)
+	if Options.AAYaw.Value ~= "Manual" or not Toggles.AAEnabled.Value then
+		--indicatorHolder.Enabled = false
+	end
+end;
+local L_73_ = 0;
+local L_74_ = false;
+function setYaw(L_1122_arg0, L_1123_arg1)
+	if L_74_ then
+		return
+	end;
+	L_1122_arg0 = holdE and 0 or L_1122_arg0;
+	if Options.AAPitch.Value ~= "None" then
+		updatePitch()
+	end;
+	if Options.AARoll.Value ~= "None" then
+		local L_1124_ = 180;
+		LocalPlayer.Character.Humanoid.HipHeight = 1.5;
+        LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall, true)
+        LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, true)
+		LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(LocalPlayer.Character.PrimaryPart.Position, LocalPlayer.Character.HumanoidRootPart.Position) * CFrame.Angles(0, math.rad(L_1122_arg0), 0) * CFrame.Angles(0, 0, math.rad(L_1124_)))
+		return
+	end;
+	LocalPlayer.Character.Humanoid.HipHeight = LocalPlayer.Character.Humanoid.HipHeight;
+	LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall, true)
+	LocalPlayer.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, true)
+	LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.Position, LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(workspace.CurrentCamera.CFrame.lookVector.X, 0, workspace.CurrentCamera.CFrame.lookVector.Z)) * CFrame.Angles(0, math.rad(L_1122_arg0), 0)
+end;
+
+AntiAim:AddToggle('AAEnabled', {
+    Text = 'Enabled',
+    Default = false,
+})
+
+AntiAim:AddDropdown('AAPitch', {
+    Values = { 'None', 'Down', 'Up' },
+    Default = 1, 
+    Multi = false,
+
+    Text = 'Pitch',
+
+    Callback = updatePitch
+})
+
+AntiAim:AddDropdown('AAYaw', {
+    Values = { 'None', 'Manual', 'Backwards', 'Spin', 'Random', 'Jitter' },
+    Default = 1, 
+    Multi = false,
+
+    Text = 'Yaw',
+
+    Callback = updatePitch
+})
+
+AntiAim:AddDropdown('AARoll', {
+    Values = { 'None', 'Upside Down' },
+    Default = 1, 
+    Multi = false,
+
+    Text = 'Roll',
+})
+
+AntiAim:AddSlider('ManualYawOffset', {
+    Text = 'ManualYawOffset',
+    Default = 0,
+    Min = -89,
+    Max = 89,
+    Rounding = 0,
+    Compact = false,
+})
+
 ------------------------------------ VISUALS TAB
 
-local function chamsPlr(v)
+local function chamsPlr(v) -- put this in a loop
     if IsAlive(v) and v ~= LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") and Toggles.Chams.Value then
         if Toggles.ESPShowTeam.Value == true or GetTeam(v) ~= GetTeam(LocalPlayer) then
             for i2, v2 in next, v.Character:GetChildren() do
@@ -846,6 +942,20 @@ ESP:AddToggle('ESPShowTeam', {
     Default = false,
 })
 
+ESP:AddToggle('ESPDistanceCheck', {
+    Text = 'Distance Check',
+    Default = false,
+})
+
+ESP:AddSlider('ESPDistance', {
+    Text = 'Distance',
+    Default = 45,
+    Min = 0,
+    Max = 2048,
+    Rounding = 0,
+    Compact = false,
+})
+
 ESP:AddDropdown('Font', {
     Values = { 'UI', 'System', 'Plex', 'Monospace' },
     Default = 1, 
@@ -904,6 +1014,7 @@ function selfChams()
 	end
 end;
 
+-- bugyg sometimes and makes it so cant run script
 function updateViewModelVisuals()
 	local L_989_;
     local L_989_2;
@@ -911,7 +1022,7 @@ function updateViewModelVisuals()
 		L_989_ = workspace.ViewModel["Left Arm"]
         L_989_2 = workspace.ViewModel["Right Arm"]
 	end;
-	if L_989_ and L_989_.Name == "Left Arm" and L_989_2 and L_989_2.Name == "Right Arm" and workspace.ViewModel:FindFirstChildOfClass("Model") then
+	if L_989_ and L_989_2 and workspace.ViewModel:FindFirstChildOfClass("Model") then
 		for L_990_forvar0, L_991_forvar1 in next, workspace.ViewModel:FindFirstChildOfClass("Model"):GetDescendants() do
             if Toggles.HideVM.Value then
                 if L_991_forvar1:IsA"BasePart" and L_991_forvar1.Name ~= "WeaponRoot" then
@@ -983,6 +1094,16 @@ function updateViewModelVisuals()
         end
 	end
 end;
+
+Viewmodel:AddToggle('ForceCH', {
+    Text = 'Force Crosshair',
+    Default = false,
+})
+
+Viewmodel:AddToggle('RemoveUI', {
+    Text = 'Remove UI Elements',
+    Default = false,
+})
 
 Viewmodel:AddToggle('HideVM', {
     Text = 'Hide Viewmodel',
@@ -1065,6 +1186,20 @@ Viewmodel:AddSlider('WeaponReflectance', {
     Rounding = 2,
     Compact = false,
     Callback = updateViewModelVisuals,
+})
+
+Viewmodel:AddSlider('FOVChanger', {
+    Text = 'FOV Changer',
+    Default = CurrentCamera.FieldOfView,
+    Min = 30,
+    Max = 120,
+    Rounding = 0,
+    Compact = false,
+})
+
+MiscESP:AddToggle('RemoveScope', {
+    Text = 'Remove Scope',
+    Default = false,
 })
 
 local thirdp = MiscESP:AddToggle('ThirdPerson', {
@@ -1167,7 +1302,7 @@ L_5_.round = function(L_713_arg0, L_714_arg1)
     return L_715_
 end;
 
--- fix teamcheck and some visual bugs with esp
+-- fix distance check thingy?? and some visual bugs with esp
 invissed = false
 RunService.RenderStepped:Connect(function(L_1691_arg0)
 	if #Players:GetPlayers() ~= countESP() then
@@ -1189,7 +1324,7 @@ RunService.RenderStepped:Connect(function(L_1691_arg0)
 				continue;
 			end;
 			if L_1696_ and (Toggles.ESPShowTeam.Value == true or GetTeam(Players[L_1694_forvar0]) ~= GetTeam(LocalPlayer)) and Players[L_1694_forvar0].Character and Players[L_1694_forvar0].Character:FindFirstChild("Humanoid") and Players[L_1694_forvar0].Character:FindFirstChild("HumanoidRootPart") and IsAlive(Players[L_1694_forvar0]) and LocalPlayer.Character:FindFirstChild("Head") and Players[L_1694_forvar0].Character:FindFirstChild("Head") or not L_1696_ and L_1695_forvar1.object then
-                if not IsAlive(LocalPlayer) or L_1696_ and math.abs(Players[L_1694_forvar0].Character.Head.Position.Y - LocalPlayer.Character.Head.Position.Y) >= 30 then
+                if not IsAlive(LocalPlayer) or L_1696_ and (Toggles.ESPDistanceCheck.Value and math.abs(Players[L_1694_forvar0].Character.Head.Position.Y - LocalPlayer.Character.Head.Position.Y) >= Options.ESPDistance.Value) then
                     L_1695_forvar1.invis()
                     continue;
                 end;
@@ -1216,7 +1351,7 @@ RunService.RenderStepped:Connect(function(L_1691_arg0)
 				--[[if library_flags["Visible Only ESP"] and LocalPlayer.Character or not L_1696_ and L_1695_forvar1.object then
 					L_1706_ = false;
 					local L_1713_ = L_1696_ and L_1697_.Character.Head.Position or L_1695_forvar1.object.Position;
-					local L_1714_ = Ray.new(L_34_.CFrame.p, (L_1713_ - L_34_.CFrame.p).unit * 500)
+					local L_1714_ = Ray.new(CurrentCamera.CFrame.p, (L_1713_ - CurrentCamera.CFrame.p).unit * 500)
 					local L_1715_, L_1716_ = workspace:FindPartOnRayWithIgnoreList(L_1714_, {
 						CurrentCamera,
 						LocalPlayer.Character,
@@ -1227,8 +1362,8 @@ RunService.RenderStepped:Connect(function(L_1691_arg0)
 						L_1706_ = L_1715_ == L_1695_forvar1.object
 					end
 				end;]]
-				if IsAlive(LocalPlayer) and L_1697_ then
-					if math.abs(L_1697_.Character.HumanoidRootPart.Position.Y - LocalPlayer.Character.HumanoidRootPart.Position.Y) > 45 then
+				if IsAlive(LocalPlayer) and L_1697_ and Toggles.ESPDistanceCheck.Value then
+					if math.abs(L_1697_.Character.HumanoidRootPart.Position.Y - LocalPlayer.Character.HumanoidRootPart.Position.Y) > Options.ESPDistance.Value then
 						L_1706_ = false
 					end
 				end;
@@ -1301,6 +1436,162 @@ RunService.RenderStepped:Connect(function(L_1691_arg0)
 			for L_1719_forvar0, L_1720_forvar1 in next, L_56_ do
 				L_1720_forvar1.invis()
 			end
+		end
+	end;
+
+    if Toggles.ForceCH.Value then
+        if LocalPlayer.PlayerGui ~= nil then
+            LocalPlayer.PlayerGui.Main.Crosshair.Visible = true
+        end
+    end
+
+    if not Toggles.ThirdPerson.Value then
+        CurrentCamera.FieldOfView = Options.FOVChanger.Value
+    end
+
+    if Toggles.AAEnabled.Value and LocalPlayer.Character and LocalPlayer.Character.PrimaryPart and LocalPlayer.Character:FindFirstChild("Humanoid") then
+        local L_141_, L_142_ = 0, 90;
+		L_141_ = L_141_ + 15;
+		L_142_ = L_142_ == 90 and -90 or 90;
+		LocalPlayer.Character.Humanoid.AutoRotate = false;
+		local L_1746_ = true;
+		if Options.AAPitch.Value == "Down" or Options.AAPitch.Value == "None" then
+			L_1746_ = false
+		end;
+		if Options.AAYaw.Value == "None" then
+			setYaw(L_1746_ and 180 or 0)
+		elseif Options.AAYaw.Value == "Backwards" then
+			setYaw(L_1746_ and 0 or 180)
+		elseif Options.AAYaw.Value == "Manual" then
+			local L_1747_ = nil;
+			if L_111_ then
+				setYaw(L_1746_ and 0 or 180)
+			end;
+			if Options.AAPitch.Value == "Down" or Options.AAPitch.Value == "None" then
+				if L_109_ then
+					L_1747_ = -90 + Options.ManualYawOffset.Value
+				elseif L_110_ then
+					L_1747_ = 90 - Options.ManualYawOffset.Value
+				elseif L_111_ then
+					L_1747_ = 180
+				end
+			else
+				if L_109_ then
+					L_1747_ = 90 + Options.ManualYawOffset.Value
+				elseif L_110_ then
+					L_1747_ = -90 - Options.AAYaw.Value
+				elseif L_111_ then
+					L_1747_ = 0
+				end
+			end;
+			setYaw(L_1747_, L_1747_ + 180)
+		elseif Options.AAYaw.Value == "Spin" then
+			setYaw(L_141_, L_141_ + 180)
+		elseif Options.AAYaw.Value == "Random" then
+			local L_1750_ = math.random(0, 360)
+			setYaw(L_1750_, L_1750_ + 180)
+		elseif Options.AAYaw.Value == "Jitter" then
+			setYaw(L_142_, - L_142_)
+		end
+	else
+		if IsAlive(LocalPlayer) then
+			LocalPlayer.Character.Humanoid.AutoRotate = true;
+			LocalPlayer.Character.Humanoid.HipHeight = LocalPlayer.Character.Humanoid.HipHeight
+		end
+	end;
+end)
+
+------------------------------------ MISC TAB
+
+Movement:AddToggle('AutoStrafe', {
+    Text = 'Auto Strafe',
+    Default = false,
+})
+
+last = Vector3.new(0,0,0)
+Movement:AddToggle('MaintainVelocity', {
+    Text = 'MaintainVelocity',
+    Default = false,
+})
+
+Movement:AddToggle('BunnyHop', {
+    Text = 'Bunny Hop',
+    Default = false,
+})
+
+Movement:AddSlider('BHOPSpeed', {
+    Text = 'Bunny Hop Speed',
+    Default = 18,
+    Min = 18,
+    Max = 500,
+    Rounding = 0,
+    Compact = false,
+})
+
+Movement:AddDropdown('BHOPMethod', {
+    Values = { 'AutoHop', 'Velocity', 'CFrame' },
+    Default = 2, 
+    Multi = false,
+})
+
+local L_54_ = false
+RunService.RenderStepped:Connect(function()
+    if Toggles.BunnyHop.Value and IsAlive(LocalPlayer) and not L_54_ then
+		local L_1739_ = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+		local L_1740_ = L_48_;
+		local L_1741_;
+		local L_1742_;
+		if L_1739_ then
+			L_1741_ = CurrentCamera.CFrame.LookVector or LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector;
+			L_1742_ = CurrentCamera.CFrame.p or L_1739_.Position
+		end;
+		--[[if library_flags["Override Game Movement"] and not edgebugDebounce then
+			return
+		end;]]
+		if not UserInputService:GetFocusedTextBox() and L_1739_ and UserInputService:IsKeyDown(Enum.KeyCode.Space) and LocalPlayer.Character:FindFirstChild("Humanoid") then
+			L_53_ = true;
+			if Options.BHOPMethod.Value == "CFrame" or Options.BHOPMethod.Value == "Velocity" then
+				L_1740_ = UserInputService:IsKeyDown(Enum.KeyCode.W) and L_1740_ + L_1741_ or L_1740_;
+				L_1740_ = UserInputService:IsKeyDown(Enum.KeyCode.S) and L_1740_ - L_1741_ or L_1740_;
+				L_1740_ = UserInputService:IsKeyDown(Enum.KeyCode.D) and L_1740_ + Vector3.new(- L_1741_.Z, 0, L_1741_.X) or L_1740_;
+				L_1740_ = UserInputService:IsKeyDown(Enum.KeyCode.A) and L_1740_ + Vector3.new(L_1741_.Z, 0, - L_1741_.X) or L_1740_;
+				local L_1743_ = Options.BHOPSpeed.Value
+				if Options.BHOPMethod.Value == "CFrame" and L_1740_ ~= L_48_ then
+					L_1743_ = L_1743_ / 300;
+					L_1740_ = L_1740_.Unit;
+					LocalPlayer.Character.HumanoidRootPart.CFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(L_1740_.X * L_1743_, 0, L_1740_.Z * L_1743_)
+					LocalPlayer.Character.Humanoid.Jump = true;
+					return
+				end;
+				local L_1744_ = UserInputService:IsKeyDown(Enum.KeyCode.S) or UserInputService:IsKeyDown(Enum.KeyCode.D) or UserInputService:IsKeyDown(Enum.KeyCode.A)
+				if L_1740_.Unit.X == L_1740_.Unit.X and not Toggles.AutoStrafe.Value or L_1740_.Unit.X == L_1740_.Unit.X and Toggles.AutoStrafe.Value and L_1744_ then
+					L_1740_ = L_1740_.Unit;
+					L_1739_.Velocity = Vector3.new(L_1740_.X * L_1743_, L_1739_.Velocity.Y, L_1740_.Z * L_1743_)
+				elseif Toggles.AutoStrafe.Value and not UserInputService:IsKeyDown(Enum.KeyCode.S) and not UserInputService:IsKeyDown(Enum.KeyCode.D) and not UserInputService:IsKeyDown(Enum.KeyCode.A) then
+					L_1740_ = L_1740_ + L_1741_;
+					L_1740_ = L_1740_.Unit;
+					L_1739_.Velocity = Vector3.new(L_1740_.X * L_1743_, L_1739_.Velocity.Y, L_1740_.Z * L_1743_)
+					LocalPlayer.Character.Humanoid:MoveTo(L_1742_ + L_1741_)
+				end;
+				last = L_1739_.Velocity
+			end;
+			LocalPlayer.Character.Humanoid.Jump = true
+        else
+			if L_53_ and Toggles.MaintainVelocity.Value then
+				local L_1737_ = 0;
+				L_54_ = true;
+				repeat
+					wait()
+					L_1737_ = L_1737_ + 1;
+					local L_1738_ = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+					if L_1738_ then
+						L_1738_.Velocity = Vector3.new(last.X, L_1738_.Velocity.Y, last.Z)
+					end
+				until not IsAlive(LocalPlayer) or UserInputService:IsKeyDown(Enum.KeyCode.Space) or LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Freefall or LocalPlayer.Character.Humanoid:GetState() == Enum.HumanoidStateType.Landed or L_1737_ == 15;
+				last = Vector3.new()
+				L_54_ = false
+			end;
+			L_53_ = false
 		end
 	end;
 end)
