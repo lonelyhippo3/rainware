@@ -61,8 +61,8 @@ loadergb:AddButton({
             return Library:Notify("Incorrect key!", 3)
         elseif input == key then
             getgenv().correct = true
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/script.lua"))()
             Library:Unload()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/script.lua"))()     
         end
     end,
 })
