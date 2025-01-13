@@ -8,6 +8,6 @@ local currGame = tostring(game.PlaceId)
 
 for name, id in next, games do
     if currGame == id then
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/games/17887390746.lua"))()
+        return loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/games/" .. currGame .. ".lua"))()
     end
 end
