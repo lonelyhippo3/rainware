@@ -1,13 +1,1 @@
-repeat wait() until game:IsLoaded()
-
-local games = {
-    ["Unnamed Shooter"] = "17887390746"
-}
-
-local currGame = tostring(game.PlaceId)
-
-for name, id in next, games do
-    if currGame == id then
-        return loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/games/" .. currGame .. ".lua"))()
-    end
-end
+repeat wait();until game:IsLoaded() local v0={["Unnamed Shooter"]="17887390746"};local v1="2.1";local v2="";local v3="";for v9,v10 in next,v0 do if (tostring(game.PlaceId)==v10) then v2=v10;v3=v9;end end local v4=loadstring(game:HttpGet("https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/Library.lua"))();local v5=v4:CreateWindow({Title="rainware loader $$$",Center=true,AutoShow=true,TabPadding=8,ShowCustomCursor=false,NotifySide="Left",MenuFadeTime=0,Size=UDim2.fromOffset(550,300)});local v6={Main=v5:AddTab("Main")};local v7=v6.Main:AddLeftGroupbox("Loader");local v8=v6.Main:AddRightGroupbox("Info");v8:AddLabel("Executor: "   .. identifyexecutor() );v8:AddLabel("User: "   .. game:GetService("Players").LocalPlayer.Name );v8:AddLabel("Game: "   .. v3 );v8:AddLabel("Stable Version: "   .. v1 );v7:AddLabel("rainware winning 💪💪");v7:AddDropdown("Build",{Values={"Legacy v1","Stable","Stable UNCless"},Default=3,Multi=false,Text="Build"});v7:AddButton({Text="Load",Func=function() v4:Unload();v4.Unloaded=true;if (Options.Build.Value=="Stable UNCless") then loadstring(game:HttpGet("https://raw.githubusercontent.com/lonelyhippo3/rainware/refs/heads/main/games/"   .. v2   .. ".lua" ))();else game:GetService("Players").LocalPlayer:Kick("Build not supported!");end end,DoubleClick=false});
