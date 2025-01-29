@@ -1,4 +1,3 @@
-
 --open source
 
 repeat wait() until game:IsLoaded()
