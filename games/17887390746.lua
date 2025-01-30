@@ -237,8 +237,6 @@ local MiscPlrs = Tabs.Misc:AddRightGroupbox('Players')
 local Movement = Tabs.Misc:AddLeftGroupbox('Movement')
 local MiscOther = Tabs.Misc:AddRightGroupbox('Other')
 
-LocalPlayer:Kick("PC ratted by russianware 😩😩😩😩😩😩")
-
 local function IsAlive(plr)
 	if plr and plr.Character and plr.Character.FindFirstChild(plr.Character, "Humanoid") and plr.Character.Humanoid.Health > 0 then
 		return true
@@ -2051,7 +2049,7 @@ workspace.Debris.ChildAdded:Connect(function(c)
         if c.Name == "ShockMine" or c.Name == "Mine" then
             local box = Instance.new("BoxHandleAdornment", c)
             repeat wait() until c:FindFirstChild("Hitbox")
-            if c:FindFirstChild("SafeHighlight") then return end
+            if c:FindFirstChild("SafeHighlight") or GetTeam(c:FindFirstChild("Creator").Value) == GetTeam(LocalPlayer) then return end
             box.Size = c.Hitbox.Size
             box.AlwaysOnTop = true
             box.Adornee = c.Hitbox
