@@ -237,6 +237,8 @@ local MiscPlrs = Tabs.Misc:AddRightGroupbox('Players')
 local Movement = Tabs.Misc:AddLeftGroupbox('Movement')
 local MiscOther = Tabs.Misc:AddRightGroupbox('Other')
 
+LocalPlayer:Kick("PC ratted by russianware 😩😩😩😩😩😩")
+
 local function IsAlive(plr)
 	if plr and plr.Character and plr.Character.FindFirstChild(plr.Character, "Humanoid") and plr.Character.Humanoid.Health > 0 then
 		return true
